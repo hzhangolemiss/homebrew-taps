@@ -1,6 +1,3 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class LammpsMac < Formula
   desc "Molecular Dynamics Simulator"
   homepage "https://www.lammps.org"
@@ -8,15 +5,11 @@ class LammpsMac < Formula
   sha256 "6666e28cb90d3ff01cbbda6c81bdb85cf436bbb41604a87f2ab2fa559caa8510"
   license "GPL-2.0"
 
-  bottle do
-    sha256 cellar: :any, arm64_sonoma: "27fb3e6eadbd7c95d238a48ab3f8533dc74a16eae5b5372f9902c1f77904add5"
-  end
-
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
+  depends_on "fftw"
   depends_on "gcc" # for gfortran
   depends_on "open-mpi"
-  depends_on "fftw"
 
   def install
     %w[sfft dfft].each do |variant|
@@ -105,7 +98,7 @@ class LammpsMac < Formula
   end
 
   test do
-    system "#{bin}/lmp_sfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
-    system "#{bin}/lmp_dfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
+    system "mpiexec", "-n", "1", "#{bin}/lmp_sfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
+    system "mpiexec", "-n", "1", "#{bin}/lmp_dfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
   end
 end
