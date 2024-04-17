@@ -5,10 +5,6 @@ class LammpsMac < Formula
   sha256 "6666e28cb90d3ff01cbbda6c81bdb85cf436bbb41604a87f2ab2fa559caa8510"
   license "GPL-2.0"
 
-  bottle do
-    sha256 cellar: :any, arm64_sonoma: "27fb3e6eadbd7c95d238a48ab3f8533dc74a16eae5b5372f9902c1f77904add5"
-  end
-
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "fftw"
