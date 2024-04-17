@@ -98,7 +98,7 @@ class LammpsMac < Formula
   end
 
   test do
-    system "#{bin}/lmp_sfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
-    system "#{bin}/lmp_dfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
+    system "mpiexec", "-n", "1", "#{bin}/lmp_sfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
+    system "mpiexec", "-n", "1", "#{bin}/lmp_dfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
   end
 end
