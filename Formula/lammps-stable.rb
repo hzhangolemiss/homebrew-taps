@@ -1,6 +1,3 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class LammpsMac < Formula
   desc "Molecular Dynamics Simulator"
   homepage "https://www.lammps.org"
@@ -14,9 +11,9 @@ class LammpsMac < Formula
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
+  depends_on "fftw"
   depends_on "gcc" # for gfortran
   depends_on "open-mpi"
-  depends_on "fftw"
 
   def install
     %w[sfft dfft].each do |variant|
