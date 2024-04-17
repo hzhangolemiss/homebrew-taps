@@ -1,4 +1,4 @@
-class LammpsMac < Formula
+class LammpsStable < Formula
   desc "Molecular Dynamics Simulator"
   homepage "https://www.lammps.org"
   url "https://github.com/lammps/lammps/archive/refs/tags/stable_2Aug2023_update3.tar.gz"
