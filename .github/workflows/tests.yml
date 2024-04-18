@@ -36,5 +36,5 @@ jobs:
         if: always() && github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: bottles
-          path: '*.bottle.*'
+          name: bottle-${{ matrix.runs-on }}
+          path: '*.bottle.${{ matrix.runs-on }}.*'
