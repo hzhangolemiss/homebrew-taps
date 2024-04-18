@@ -7,7 +7,7 @@ class LammpsStable < Formula
 
   bottle do
     root_url "https://github.com/hzhangolemiss/homebrew-taps/releases/download/v0.1/lammps-stable--3.arm64_sonoma.bottle.tar.gz"
-    sha256 cellar: :any,                 arm64_sonoma:   "d7384b1c9f035d638118b43916c84e66551903e4d54e4e14d64d3de9949375da"
+    sha256 cellar: :any, arm64_sonoma: "d7384b1c9f035d638118b43916c84e66551903e4d54e4e14d64d3de9949375da"
   end
 
   depends_on "cmake" => :build
