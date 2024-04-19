@@ -9,7 +9,7 @@ class LammpsStable < Formula
   bottle do
     root_url "https://github.com/hzhangolemiss/homebrew-taps/releases/download/ver.2Aug23.3"
     rebuild 2
-    sha256 cellar: :any, arm64_sonoma: "023d1305a0564454e97bd8fc5b7c7940f81d0df799129a4bb854190ef8548b21"
+    sha256 cellar: :any, arm64_sonoma: "7b4105ac76c6dc76ee1fda89c13e9c1320d3560d7f0adbcf6b052702bdedd64e"
   end
 
   depends_on "cmake" => :build
@@ -41,6 +41,7 @@ class LammpsStable < Formula
                         "-DPKG_DPD-SMOOTH=yes",
                         "-DPKG_DRUDE=yes",
                         "-DPKG_EFF=yes",
+                        "-DPKG_ELECTRODE=yes",
                         "-DPKG_EXTRA-COMPUTE=yes",
                         "-DPKG_EXTRA-DUMP=yes",
                         "-DPKG_EXTRA-FIX=yes",
@@ -50,6 +51,7 @@ class LammpsStable < Formula
                         "-DPKG_GRANULAR=yes",
                         "-DPKG_INTERLAYER=yes",
                         "-DPKG_KSPACE=yes",
+                        "-DPKG_LATBOLTZ=yes",
                         "-DPKG_MANIFOLD=yes",
                         "-DPKG_MANYBODY=yes",
                         "-DPKG_MC=yes",
@@ -93,11 +95,11 @@ class LammpsStable < Formula
                         "-DMPIEXEC_MAX_NUMPROCS=8",
                         "-DMPI_CXX_SKIP_MPICXX=yes",
                         "-DWITH_FFMPEG=no",
-                        "-DWITH_GZIP=no",
+                        "-DWITH_GZIP=yes",
                         "-DWITH_JPEG=no",
                         "-DWITH_PNG=no",
                         *std_cmake_args
-      system "cmake", "--build", "build_#{variant}", "-j2"
+      system "cmake", "--build", "build_#{variant}"
       system "cmake", "--install", "build_#{variant}"
     end
   end
