@@ -7,7 +7,7 @@ class LammpsStable < Formula
   license "GPL-2.0"
 
   bottle do
-    root_url ""
+    root_url "https://github.com/hzhangolemiss/homebrew-taps/releases/download/ver.2Aug23.3"
     rebuild 1
     sha256 cellar: :any, arm64_sonoma: "afe0364016cd6fccd06ce30f5b829b2c0a32e775a5f52b0b660666107fe7f921"
   end
