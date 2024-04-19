@@ -1,4 +1,4 @@
-# Hzhangolemiss Taps
+# hzhangolemiss Taps
 
 ## How do I install these formulae?
 
