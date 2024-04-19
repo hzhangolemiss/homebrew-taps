@@ -6,6 +6,12 @@ class LammpsStable < Formula
   sha256 "6666e28cb90d3ff01cbbda6c81bdb85cf436bbb41604a87f2ab2fa559caa8510"
   license "GPL-2.0"
 
+  bottle do
+    root_url ""
+    rebuild 1
+    sha256 cellar: :any, arm64_sonoma: "afe0364016cd6fccd06ce30f5b829b2c0a32e775a5f52b0b660666107fe7f921"
+  end
+
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
   depends_on "fftw"
