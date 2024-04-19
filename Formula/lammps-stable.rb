@@ -97,7 +97,7 @@ class LammpsStable < Formula
                         "-DWITH_JPEG=no",
                         "-DWITH_PNG=no",
                         *std_cmake_args
-      system "cmake", "--build", "build_#{variant}"
+      system "cmake", "--build", "build_#{variant}", "-j2"
       system "cmake", "--install", "build_#{variant}"
     end
   end
