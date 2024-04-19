@@ -8,8 +8,8 @@ class LammpsStable < Formula
 
   bottle do
     root_url "https://github.com/hzhangolemiss/homebrew-taps/releases/download/ver.2Aug23.3"
-    rebuild 1
-    sha256 cellar: :any, arm64_sonoma: "afe0364016cd6fccd06ce30f5b829b2c0a32e775a5f52b0b660666107fe7f921"
+    rebuild 2
+    sha256 cellar: :any, arm64_sonoma: "023d1305a0564454e97bd8fc5b7c7940f81d0df799129a4bb854190ef8548b21"
   end
 
   depends_on "cmake" => :build
@@ -19,7 +19,7 @@ class LammpsStable < Formula
   depends_on "open-mpi"
 
   def install
-    %w[sfft dfft].each do |variant|
+    %w[sfft].each do |variant|
       system "cmake", "-S", "cmake", "-B", "build_#{variant}",
                         "-C", "cmake/presets/all_off.cmake",
                         "-DPKG_ASPHERE=yes",
@@ -100,12 +100,10 @@ class LammpsStable < Formula
       system "cmake", "--build", "build_#{variant}"
       system "cmake", "--install", "build_#{variant}"
     end
-
-    pkgshare.install %w[bench examples]
   end
 
   test do
-    system "mpiexec", "-n", "1", "#{bin}/lmp_sfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
-    system "mpiexec", "-n", "1", "#{bin}/lmp_dfft_mpi", "-in", "#{pkgshare}/bench/in.lj"
+    system "mpiexec", "-n", "1", "#{bin}/lmp_sfft_mpi", "-in", "#{share}/lammps/bench/in.lj"
+    system "mpiexec", "-n", "4", "#{bin}/lmp_sfft_mpi", "-in", "#{share}/lammps/bench/in.lj"
   end
 end
