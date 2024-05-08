@@ -52,7 +52,7 @@ class LammpsStable < Formula
                         "-DPKG_GRANULAR=yes",
                         "-DPKG_INTERLAYER=yes",
                         "-DPKG_KSPACE=yes",
-                        "-DPKG_LATBOLTZ=yes",
+                        "-DPKG_LATBOLTZ=#{(variant == "mpi") ? "yes" : "no"}",
                         "-DPKG_MANIFOLD=yes",
                         "-DPKG_MANYBODY=yes",
                         "-DPKG_MC=yes",
