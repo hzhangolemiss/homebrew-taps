@@ -6,11 +6,12 @@ class LammpsStable < Formula
   sha256 "6666e28cb90d3ff01cbbda6c81bdb85cf436bbb41604a87f2ab2fa559caa8510"
   license "GPL-2.0"
 
-  bottle do
-    root_url "https://github.com/hzhangolemiss/homebrew-taps/releases/download/ver.2Aug23.3"
-    rebuild 2
-    sha256 cellar: :any, arm64_sonoma: "7b4105ac76c6dc76ee1fda89c13e9c1320d3560d7f0adbcf6b052702bdedd64e"
-  end
+  # brew install --build-bottle xxx && brew bottle --json xxx
+  # bottle do
+  #   root_url "https://github.com/hzhangolemiss/homebrew-taps/releases/download/ver.2Aug23.3"
+  #   rebuild 2
+  #   sha256 cellar: :any, arm64_sonoma: "7b4105ac76c6dc76ee1fda89c13e9c1320d3560d7f0adbcf6b052702bdedd64e"
+  # end
 
   depends_on "cmake" => :build
   depends_on "pkg-config" => :build
@@ -19,7 +20,7 @@ class LammpsStable < Formula
   depends_on "open-mpi"
 
   def install
-    %w[sfft].each do |variant|
+    %w[serial mpi].each do |variant|
       system "cmake", "-S", "cmake", "-B", "build_#{variant}",
                         "-C", "cmake/presets/all_off.cmake",
                         "-DPKG_ASPHERE=yes",
@@ -84,14 +85,14 @@ class LammpsStable < Formula
                         "-DPKG_UEF=yes",
                         "-DPKG_YAFF=yes",
                         "-DBUILD_TOOLS=no",
-                        "-DBUILD_MPI=yes",
+                        "-DBUILD_MPI=#{(variant == "mpi") ? "yes" : "no"}",
                         "-DBUILD_OMP=no",
                         "-DBUILD_SHARED_LIBS=yes",
                         "-DCMAKE_INSTALL_RPATH=#{rpath}",
                         "-DFFT=FFTW3",
                         "-DFFT_FFTW_THREADS=no",
-                        "-DFFT_SINGLE=#{(variant == "sfft") ? "yes" : "no"}",
-                        "-DLAMMPS_MACHINE=#{variant}_mpi",
+                        "-DFFT_SINGLE=yes",
+                        "-DLAMMPS_MACHINE=#{variant}",
                         "-DMPIEXEC_MAX_NUMPROCS=8",
                         "-DMPI_CXX_SKIP_MPICXX=yes",
                         "-DWITH_FFMPEG=no",
@@ -105,7 +106,8 @@ class LammpsStable < Formula
   end
 
   test do
-    system "mpiexec", "-n", "1", "#{bin}/lmp_sfft_mpi", "-in", "#{share}/lammps/bench/in.lj"
-    system "mpiexec", "-n", "4", "#{bin}/lmp_sfft_mpi", "-in", "#{share}/lammps/bench/in.lj"
+    system "#{bin}/lmp_serial", "-in", "#{share}/lammps/bench/in.lj"
+    system "mpiexec", "-n", "1", "#{bin}/lmp_mpi", "-in", "#{share}/lammps/bench/in.lj"
+    system "mpiexec", "-n", "4", "#{bin}/lmp_mpi", "-in", "#{share}/lammps/bench/in.lj"
   end
 end
