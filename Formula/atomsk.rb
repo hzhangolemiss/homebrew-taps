@@ -18,7 +18,7 @@ class Atomsk < Formula
     ENV["FORTRAN"] = "gfortran"
     ENV["FFLAGS"] = "-O2 -fno-backslash -I..$(SEP)$(OBJ) -J..$(SEP)$(OBJ)"
     cd "src" do
-      system "make", "-j4", "atomsk"
+      system "make", "atomsk"
     end
     bin.install "./src/atomsk"
   end
