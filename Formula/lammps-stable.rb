@@ -1,9 +1,9 @@
 class LammpsStable < Formula
   desc "Molecular Dynamics Simulator"
   homepage "https://www.lammps.org"
-  url "https://github.com/lammps/lammps/archive/refs/tags/stable_2Aug2023_update3.tar.gz"
-  version "2Aug23.3"
-  sha256 "6666e28cb90d3ff01cbbda6c81bdb85cf436bbb41604a87f2ab2fa559caa8510"
+  url "https://github.com/lammps/lammps/archive/refs/tags/stable_29Aug2024.tar.gz"
+  version "2Aug24.0"
+  sha256 "6112e0cc352c3140a4874c7f74db3c0c8e30134024164509ecf3772b305fde2e"
   license "GPL-2.0"
 
   # brew install --build-bottle xxx && brew bottle --json xxx
@@ -32,6 +32,7 @@ class LammpsStable < Formula
                         "-DPKG_CG-SDK=yes",
                         "-DPKG_CLASS2=yes",
                         "-DPKG_COLLOID=yes",
+                        "-DPKG_COMPRESS=yes",
                         "-DPKG_CORESHELL=yes",
                         "-DPKG_DIELECTRIC=yes",
                         "-DPKG_DIFFRACTION=yes",
