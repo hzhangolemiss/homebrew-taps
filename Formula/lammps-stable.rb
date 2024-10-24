@@ -1,9 +1,9 @@
 class LammpsStable < Formula
   desc "Molecular Dynamics Simulator"
   homepage "https://www.lammps.org"
-  url "https://github.com/lammps/lammps/archive/refs/tags/stable_29Aug2024.tar.gz"
-  version "2Aug24.0"
-  sha256 "6112e0cc352c3140a4874c7f74db3c0c8e30134024164509ecf3772b305fde2e"
+  url "https://github.com/lammps/lammps/archive/refs/tags/stable_29Aug2024_update1.tar.gz"
+  version "2Aug24.1"
+  sha256 "3aea41869aa2fb8120fc4814cab645686f969e2eb7c66aa5587e500597d482dc"
   license "GPL-2.0"
 
   # brew install --build-bottle xxx && brew bottle --json xxx
